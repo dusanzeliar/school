@@ -1,0 +1,26 @@
+Sniffer RIPv1, RIPv2, RIPng sprav
+Podvrhavac falosnych RIPv2 sprav
+
+Autor: Dusan Zeliar,xzelia00, FIT
+
+Popis
+Sniffer: Program zachytava pakety na rozhrani zadanom pri spusteni. Tieto pakety filtruje a zobrazuje len tie, ktore prisli na porty 520 a 521.
+Program zobrazi informacie ako zdrojova IP, cielova IP, velkost paketu, typ spravy a routing informacie, ktore zalezia na type protokolu.
+Podvrhavac sprav: Program umoznuje generovanie falosnej RIPv2 spravy, ktoru odosle vsetkym routerom podporujucich RIPv2.  
+
+Priklad spustenia:
+Sniffer: ./myripsniffer -i eth0
+Podvrhavac: ./myripresponse -i eth0 -r 10.10.10.0/24 -n 10.10.10.123 -m 2 -t 2 -p ISA\>28314708612
+Podrobnejsie informacie su prilozene v dokumente manual.pdf
+
+Obmedzenie: Programy musia byt spustene s pravami roota 
+
+Poznámka: Pouzity login pre generovanie RIP sprav: xlogin00
+          Dovod: hash loginu xzelia00 generoval nevalidnu IPv6 adresu a 
+
+Zoznam suborov:
+Makefile
+README
+manual.pdf
+myripsniffer.cpp
+myripresponse.cpp
