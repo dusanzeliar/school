@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=iso-8859-2"/>
+    <title>Projekt IIS</title>
+    <style type="text/css">
+    	table { border-collapse: collapse; }
+    	td, th { border: 1px solid black; padding: 0.3em 0.5em; text-align: left; }
+    	dt { font-weight: bold; margin-top: 0.5em; }
+    </style>
+</head>
+<body>
+
+<!-- Zkontrolujte prosím nastavení kódování v hlavičce dokumentu 
+     podle použitého editoru -->
+
+<h1>Reťazec multikín</h1> <!-- Nahradte názvem svého zadání -->
+
+<dl>
+	<dt>Autoři</dt>
+	<dd>Dušan Želiar <!-- Nahraďte skutečným jménem a e-mailem autora a popisem činnosti -->
+	    <a href="mailto:xzelia00@stud.fit.vutbr.cz">xzelia00@stud.fit.vutbr.cz</a> -
+		správa rezervácií, projekcií, lístkov a uživatelské rozhraní
+	</dd>
+	<dd>Mutňanský Filip <!-- Nahraďte skutečným jménem a e-mailem autora a popisem činnosti -->
+	    <a href="mailto:xmutna00@stud.fit.vutbr.cz">xmutna00@stud.fit.vutbr.cz</a> - 
+		databázový subsystém a správa uživatelů
+	</dd>
+	<dt>URL aplikace</dt>
+	<dd><a href="http://ubytovanieslavin.sk/kino/public/home">http://ubytovanieslavin.sk/kino/public/home</a></dd>
+
+</dl>
+
+<h2>Uživatelé systému pro testování</h2>
+<p>poznámka: aktuálne filmové projekcie sú v kine Aupark 5 a 6 decembra 2015 (použite navigáciu kalendárom na pravom kraji textbox) </p>
+<table>
+<tr><th>Login</th><th>Heslo</th><th>Role</th></tr>
+<tr><td>boss1@email.com</td><td>heslo123</td><td>Manažér</td></tr>
+<tr><td>predavac1@email.com</td><td>heslo123</td><td>Predavač lístkov</td></tr>
+<tr><td>user1@email.com</td><td>heslo123</td><td>Zákazník</td></tr>
+</table>
+
+
+<h2>Implementace</h2>
+<p>Pre plnú funkčnosť systému použite prehliadač Chrome </p>
+<p>
+Systém využíva framework laravel 5.1 . Štruktúra mysql databázy je definovaná v migračných súboroch migration/* a každá tabuľka má definované vzťahy v app/*.php . 
+Role uživateľov sú spravované pomocou balíka ENTRUST. Jednotlivé kontroĺéry routes sú definované v app/Html/Controllers/ . Výsledné pohľady stránky využívajú balík blade a nachádzajú sa v resources/views/
+</p>
+<p>
+Užívateľ môže zobraziť filmy v kinách (kontroller: FilmController.php , pohľad: list_filmn.blade.php).
+Užívateľ môže vyhľadať program vybraného kina vo zvolenom dátume (kontroller: AuparkController.php/EuroveaController.php  , pohľad: program.blade.php).
+Užívateľ môže zobraziť detail vybranej projekcie za účelom rezervácie lístku alebo zrušenia rezervácie (kontroller: ShowProjectionController.php , pohľad: show_projection.blade.php).
+Užívateľ môže zobraziť svoje rezervácie na projekcie , kde ich môže aj zrušiť (kontroller: ReserveController.php , pohľad: reserve.blade.php).</p>
+<p>Pokladník môže vyhľadať program vybraného kina vo zvolenom dátume (kontroller: Aupark_pController.php/Eurovea_pController.php  , pohľad: program_p.blade.php).
+Pokladník môže zobraziť detail vybranej projekcie za účelom kúpi lístka po jednom alebo kúpou všetkých lístkov z rezervácie uživateľa (kontroller: BuyProjectionController.php  , pohľad: buy_projection.blade.php).
+Pokladník môže kúpiť lístok po jednom alebo kúpiť všetky lístky z rezervácie uživateľa (kontroller: BuyTicketController.php  , pohľad: buy_projection.blade.php).</p>
+<p>Manažér môže pridávať nových pracovníkov (vopred registrovaných uživateľov) (BossController.php , pohľad: add_salesman.blade.php).
+Manažér môže sledovať tržby jednotlivých kín a filmov v zvolenom čase (ShowSalesController.php , pohľad: show_sales.blade.php).
+</p>
+
+
+<h2>Instalace</h2>
+<ul>
+<li>Softwarové požadavky: PHP >= 5.5.9, OpenSSL PHP Extension, PDO PHP Extension, Mbstring PHP Extension, Tokenizer PHP Extension</li>
+<li>Pomocou composer update nainštalujte potrebné balíky z composer.json, skopírujte odovzdaný obsah a prepíšte ním aktuálny, nastavte .env, pomocou artisan migrate migrujte databázu na server</li>
+</ul>
+
+<h2>Známé problémy</h2>
+<p>Pôvodné zadanie nevyžadovalo možnosť vkladania nových projekcií, pri návrhu systému sme preto na túto funkciu zabudli, ale z hľadiska komplexného využitia systému je potrebná. Bohužiaľ neskôr sme ju už nestihli implementovať.</p>
+</body>
+</html>
